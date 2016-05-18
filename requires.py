@@ -30,6 +30,7 @@ class ElasticSearchClient(RelationBase):
     @hook('{requires:elasticsearch}-relation-{broken, departed}')
     def broken(self):
         self.remove_state('{relation_name}.connected')
+        self.remove_state('{relation_name}.available')
         self.set_state('{relation_name}.broken')
 
     def list_unit_data(self):
